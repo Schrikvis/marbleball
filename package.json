@@ -1,20 +1,34 @@
 {
-  "name": "nodetest1",
-  "version": "0.0.0",
-  "private": true,
-  "scripts": {
-    "start": "node ./bin/www"
+  "name": "Sample-App_Derived-App",
+  "version": "1.0.1",
+  "description": "OpenShift Sample Application Adaptation",
+  "homepage": "none",
+  "keywords": [
+    "OpenShift",
+    "Node.js",
+    "application",
+    "openshift"
+  ],
+
+  "repository": {
+    "type": "git",
+    "url": "https://gitub.com/openshift-quickstart/openshift-mongo-node-express-example"
   },
-    "main": "app.js",
-	"dependencies": {
-		"express": "~4.0.0",
-		"serve-favicon": "~2.1.3",
-		"morgan": "~1.0.0",
-		"cookie-parser": "~1.0.1",
-		"body-parser": "~1.0.0",
-		"debug": "~0.7.4",
-		"jade": "~1.3.0",
-		"mongodb": "*",
-		"monk": "*"
-	}
-  }
+
+  "engines": {
+    "node": ">= 0.10.0",
+    "npm": ">= 1.0.0"
+  },
+
+  "dependencies": {
+  	"mongodb" : "> 1.1.10",
+    "express" : "> 4.4.4",
+    "body-parser": "> 1.0.0",
+    "method-override": "> 1.0.0"
+  },
+
+  "devDependencies": {},
+  "bundleDependencies": [],
+  "private": true,
+  "main": "server.js"
+}
