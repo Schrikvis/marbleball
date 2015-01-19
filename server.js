@@ -86,8 +86,8 @@ var App = function(){
 	cursor.sort('Time', -1)
 		res.write(JSON.stringify(cursor))
 		res.end()
-	})	
-  )};  
+	});	
+  });  
 
   // Logic to open a database connection. We are going to call this outside of app so it is available to all our functions inside.
   self.connectDb = function(callback){
