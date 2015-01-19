@@ -93,7 +93,7 @@ var App = function(){
 	}
 	,
 	function(err, cursor){
-		if !(err){
+		if not (err){
 			cursor.sort('Time', -1)
 			res.write(JSON.stringify(cursor)) //converting circular structure to JSON
 		}
