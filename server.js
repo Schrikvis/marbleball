@@ -90,20 +90,20 @@ var App = function(){
   // Web app urls
 	self.app  = express();
 	//This uses the Connect frameworks body parser to parse the body of the post request  
-	  self.app.use(express.bodyParser());
-	  self.app.use(express.methodOverride());
-	  self.app.use(express.errorHandler({ dumpExceptions: true, showStack: true }));
+	  //self.app.use(express.bodyParser());
+	 // self.app.use(express.methodOverride());
+	  //self.app.use(express.errorHandler({ dumpExceptions: true, showStack: true }));
 
 	  
   //This uses the Connect frameworks body parser to parse the body of the post request
-  //var bodyParser = require('body-parser');
-  //var methodOverride = require('method-override');
+  var bodyParser = require('body-parser');
+  var methodOverride = require('method-override');
   // parse application/x-www-form-urlencoded
-  //self.app.use(bodyParser.urlencoded());
+  self.app.use(bodyParser.urlencoded());
   // parse application/json
-  //self.app.use(bodyParser.json());
+  self.app.use(bodyParser.json());
   // override with POST having ?_method=DELETE
-  //self.app.use(methodOverride('_method'))
+  self.app.use(methodOverride('_method'))
 
   //define all the custom url map functions
   
