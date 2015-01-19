@@ -81,7 +81,7 @@ var App = function(){
     var lon = parseFloat(req.body.lon);
     var name = req.body.name;
     self.db.collection('parkpoints').insert( {'Name' : name, 'pos' : [lon,lat]}, {w:1}, function(err, records){
-    if (err) { throw err; }
+    if (err) { callback(); }
     res.end('success');
     });
   };
@@ -165,7 +165,7 @@ var App = function(){
   // Logic to open a database connection. We are going to call this outside of app so it is available to all our functions inside.
   self.connectDb = function(callback){
     self.db.open(function(err, db){
-      if(err){ throw err };
+      if(err){ callback() };
       self.db.authenticate(self.dbUser, self.dbPass, {authdb: "admin"}, function(err, res){
         if(err){};
         callback();
