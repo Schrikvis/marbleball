@@ -21,8 +21,8 @@
   },
 
   "dependencies": {
-  	"mongodb" : "> 1.1.10",
-    "express" : "> 4.4.4",
+  	"mongodb" : "*",
+    "express" : "*",
     "body-parser": "> 1.0.0",
     "method-override": "> 1.0.0"
   },
