@@ -26,17 +26,17 @@ var App = function(){
   self.routes = {};
 
   // Web app urls
-	self.app  = express();  
+  self.app  = express();  
   //This uses the Connect frameworks body parser to parse the body of the post request
   var methodOverride = require('method-override');
   // parse application/x-www-form-urlencoded
   //self.app.use(bodyParser.urlencoded());
-  var bodyParser = require('body-parser')
+  var bodyParser = require('body-parser');
   // parse application/json
   self.app.use(bodyParser.json());
   self.app.use(bodyParser.urlencoded({extended: true}));
   // override with POST having ?_method=DELETE
-  self.app.use(methodOverride('_method'))
+  self.app.use(methodOverride('_method'));
 
   //define all the custom url map functions
   
@@ -68,7 +68,7 @@ var App = function(){
 	)
   res.end()
   return
-  }
+  });
     
   self.app.post('/addtime', function(req, res, next){
 	var reqminRank = req.param('minRank');
@@ -87,7 +87,7 @@ var App = function(){
 		res.write(JSON.stringify(cursor))
 		res.end()
 	})	
-  }  
+  };  
 
   // Logic to open a database connection. We are going to call this outside of app so it is available to all our functions inside.
   self.connectDb = function(callback){
@@ -98,7 +98,7 @@ var App = function(){
         callback();
       });
     });
-  }
+  });
   
   
   //starting the nodejs server with express
@@ -106,7 +106,7 @@ var App = function(){
     self.app.listen(self.port, self.ipaddr, function(){
       console.log('%s: Node server started on %s:%d ...', Date(Date.now()), self.ipaddr, self.port);
     });
-  }
+  };
 
   // Destructors
   self.terminator = function(sig) {
@@ -115,7 +115,7 @@ var App = function(){
       process.exit(1);
     };
     console.log('%s: Node server stopped.', Date(Date.now()) );
-  }
+  };
 
   process.on('exit', function() { self.terminator(); });
 
@@ -125,7 +125,7 @@ var App = function(){
 
   ['SIGHUP', 'SIGINT', 'SIGQUIT', 'SIGILL', 'SIGTRAP', 'SIGABRT', 'SIGBUS', 'SIGFPE', 'SIGUSR1', 'SIGSEGV', 'SIGUSR2', 'SIGPIPE', 'SIGTERM'].forEach(self.terminatorSetup);
 
-}
+};
 
 //make a new express app
 var app = new App();
