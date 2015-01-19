@@ -42,14 +42,14 @@ var App = function(){
   // override with POST having ?_method=DELETE
   self.app.use(methodOverride('_method'));
 
-  //define all the custom url map functions
+  //define all the custom url map functio ns
  
    //default response with info about app URLs
   self.app.get('/', function(req, res){ 
     res.send('root response~'); 
   });
  
-  self.app.get('/addtime', function(req, res, next){
+  self.app.get('/addtime', function(req, res){
     // Get our form values
     var userName = req.body['UserName'];
 	var userID = req.body['UserID'];
@@ -80,7 +80,7 @@ var App = function(){
   return
   });
     
-  self.app.post('/gettimes', function(req, res, next){
+  self.app.post('/gettimes', function(req, res){
 	var reqminRank = req.param('minRank');
 	var reqmaxRank = req.param('maxRank'); //size of table
 	var reqminTime = req.param('minTime'); //sort by time~
