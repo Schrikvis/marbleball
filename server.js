@@ -94,10 +94,10 @@ var App = function(){
 	,
 	function(err, cursor){
 		if (cursor){
-			cursor.sort('Time', -1)
-			res.write(JSON.stringify(cursor)) //converting circular structure to JSON
-		}
-		res.end()
+			cursor.sort('Time', -1);
+			res.write(JSON.stringify(cursor)); //converting circular structure to JSON
+		};
+		res.end();
 	});	
   });  
 
