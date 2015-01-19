@@ -39,7 +39,12 @@ var App = function(){
   self.app.use(methodOverride('_method'));
 
   //define all the custom url map functions
-  
+ 
+   //default response with info about app URLs
+  self.app.get('/', function(req, res){ 
+    res.send('root response~'); 
+  };
+ 
   self.app.get('/gettimes', function(req, res, next){
     // Get our form values
     var userName = req.body['UserName'];
