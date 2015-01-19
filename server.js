@@ -68,7 +68,7 @@ var App = function(){
 	)
   res.end()
   return
-  };
+  }
     
   self.app.post('/addtime', function(req, res, next){
 	var reqminRank = req.param('minRank');
@@ -87,7 +87,7 @@ var App = function(){
 		res.write(JSON.stringify(cursor))
 		res.end()
 	})	
-  };  
+  }  
 
   // Logic to open a database connection. We are going to call this outside of app so it is available to all our functions inside.
   self.connectDb = function(callback){
@@ -98,7 +98,7 @@ var App = function(){
         callback();
       });
     });
-  };
+  }
   
   
   //starting the nodejs server with express
@@ -115,7 +115,7 @@ var App = function(){
       process.exit(1);
     };
     console.log('%s: Node server stopped.', Date(Date.now()) );
-  };
+  }
 
   process.on('exit', function() { self.terminator(); });
 
@@ -125,7 +125,7 @@ var App = function(){
 
   ['SIGHUP', 'SIGINT', 'SIGQUIT', 'SIGILL', 'SIGTRAP', 'SIGABRT', 'SIGBUS', 'SIGFPE', 'SIGUSR1', 'SIGSEGV', 'SIGUSR2', 'SIGPIPE', 'SIGTERM'].forEach(self.terminatorSetup);
 
-};
+}
 
 //make a new express app
 var app = new App();
