@@ -98,7 +98,7 @@ var App = function(){
         callback();
       });
     });
-  });
+  };
   
   
   //starting the nodejs server with express
