@@ -24,37 +24,23 @@ var App = function(){
 
   // Web app logic
   self.routes = {};
-  self.routes['health'] = function(req, res){ res.send('1'); };
-  
-  //default response with info about app URLs
-  self.routes['root'] = function(req, res){ 
-    res.send('You have come to the park apps web service. All the web services are at /ws/parks*. \
-      For example /ws/parks will return all the parks in the system in a JSON payload. \
-      Thanks for stopping by and have a nice day'); 
-  };
 
   // Web app urls
-	self.app  = express();
-	//This uses the Connect frameworks body parser to parse the body of the post request  
-	  //self.app.use(express.bodyParser());
-	 // self.app.use(express.methodOverride());
-	  //self.app.use(express.errorHandler({ dumpExceptions: true, showStack: true }));
-
-	  
+	self.app  = express();  
   //This uses the Connect frameworks body parser to parse the body of the post request
-  var bodyParser = require('body-parser');
   var methodOverride = require('method-override');
   // parse application/x-www-form-urlencoded
   //self.app.use(bodyParser.urlencoded());
   var bodyParser = require('body-parser')
   // parse application/json
   self.app.use(bodyParser.json());
+  self.app.use(bodyParser.urlencoded({extended: true}));
   // override with POST having ?_method=DELETE
   self.app.use(methodOverride('_method'))
 
   //define all the custom url map functions
   
-  self.routes['postTime'] = function(req, res){
+  self.app.get('/gettimes', function(req, res, next){
     // Get our form values
     var userName = req.body['UserName'];
 	var userID = req.body['UserID'];
@@ -84,7 +70,7 @@ var App = function(){
   return
   };
     
-  self.routes['getTimes'] = function(req, res){
+  self.app.post('/addtime', function(req, res, next){
 	var reqminRank = req.param('minRank');
 	var reqmaxRank = req.param('maxRank'); //size of table
 	var reqminTime = req.param('minTime'); //sort by time~
@@ -101,13 +87,7 @@ var App = function(){
 		res.write(JSON.stringify(cursor))
 		res.end()
 	})	
-  };
-  
-   //define all the custom url mappings
-  self.app.get('/gettimes', self.routes['getTimes']);
-  self.app.post('/addtime', self.routes['addTime'])
-  
-  
+  };  
 
   // Logic to open a database connection. We are going to call this outside of app so it is available to all our functions inside.
   self.connectDb = function(callback){
