@@ -167,7 +167,7 @@ var App = function(){
     self.db.open(function(err, db){
       if(err){ throw err };
       self.db.authenticate(self.dbUser, self.dbPass, {authdb: "admin"}, function(err, res){
-        if(err){ throw err('no authentication') };
+        if(err){};
         callback();
       });
     });
