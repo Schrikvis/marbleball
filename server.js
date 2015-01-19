@@ -93,8 +93,10 @@ var App = function(){
 	}
 	,
 	function(err, cursor){
-		cursor.sort('Time', -1)
-		res.write(JSON.stringify(cursor)) //converting circular structure to JSON
+		if !(err){
+			cursor.sort('Time', -1)
+			res.write(JSON.stringify(cursor)) //converting circular structure to JSON
+		}
 		res.end()
 	});	
   });  
