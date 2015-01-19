@@ -45,7 +45,8 @@ var App = function(){
   var bodyParser = require('body-parser');
   var methodOverride = require('method-override');
   // parse application/x-www-form-urlencoded
-  self.app.use(bodyParser.urlencoded());
+  //self.app.use(bodyParser.urlencoded());
+  var bodyParser = require('body-parser')
   // parse application/json
   self.app.use(bodyParser.json());
   // override with POST having ?_method=DELETE
