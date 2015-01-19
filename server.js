@@ -88,13 +88,13 @@ var App = function(){
 
 
   // Web app urls
-	self.app  = express());
-	 
+	self.app  = express();
 	//This uses the Connect frameworks body parser to parse the body of the post request  
 	  self.app.use(express.bodyParser());
 	  self.app.use(express.methodOverride());
 	  self.app.use(express.errorHandler({ dumpExceptions: true, showStack: true }));
 
+	  
   //This uses the Connect frameworks body parser to parse the body of the post request
   //var bodyParser = require('body-parser');
   //var methodOverride = require('method-override');
