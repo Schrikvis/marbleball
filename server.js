@@ -49,7 +49,7 @@ var App = function(){
     res.send('root response~'); 
   });
  
-  self.app.get('/gettimes', function(req, res, next){
+  self.app.get('/addtime', function(req, res, next){
     // Get our form values
     var userName = req.body['UserName'];
 	var userID = req.body['UserID'];
@@ -73,13 +73,14 @@ var App = function(){
 		{'UserID' : userID, 'LevelName' : levelName, 'Time' : Time, 'UserName' : userName},
 		{
 		 upsert : true
-		}
+		}, 
+		function (err, result){ if (err) throw err; console.log(result);}
 	)
   res.end()
   return
   });
     
-  self.app.post('/addtime', function(req, res, next){
+  self.app.post('/gettimes', function(req, res, next){
 	var reqminRank = req.param('minRank');
 	var reqmaxRank = req.param('maxRank'); //size of table
 	var reqminTime = req.param('minTime'); //sort by time~
