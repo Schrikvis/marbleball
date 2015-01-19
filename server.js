@@ -33,60 +33,6 @@ var App = function(){
       Thanks for stopping by and have a nice day'); 
   };
 
-  //returns all the parks in the collection
-  self.routes['returnAllParks'] = function(req, res){
-    self.db.collection('parkpoints').find().toArray(function(err, names) {
-      res.header("Content-Type:","application/json");
-      res.end(JSON.stringify(names));
-    });
-  };
-
-  //find a single park by passing in the objectID to the URL
-  self.routes['returnAPark'] = function(req, res){
-      var BSON = mongodb.BSONPure;
-      var parkObjectID = new BSON.ObjectID(req.params.id);
-      self.db.collection('parkpoints').find({'_id':parkObjectID}).toArray(function(err, names){
-        res.header("Content-Type:","application/json"); 
-        res.end(JSON.stringify(names));
-      });
-  }
-
-  //find parks near a certain lat and lon passed in as query parameters (near?lat=45.5&lon=-82)
-  self.routes['returnParkNear'] = function(req, res){
-    //in production you would do some sanity checks on these values before parsing and handle the error if they don't parse
-    var lat = parseFloat(req.query.lat);
-    var lon = parseFloat(req.query.lon);
-    self.db.collection('parkpoints').find( {"pos" : {$near: [lon,lat]}}).toArray(function(err,names){
-      res.header("Content-Type:","application/json");
-      res.end(JSON.stringify(names));
-    });
-  };
-
-  //find parks near a certain park name, lat and lon (name?lon=10&lat=10)
-  self.routes['returnParkNameNear'] = function(req, res){
-    //in production you would do some sanity checks on these values before parsing and handle the error if they don't parse
-    var lat = parseFloat(req.query.lat);
-    var lon = parseFloat(req.query.lon);
-    var name = req.params.name;
-    self.db.collection('parkpoints').find( {"Name" : {$regex : name, $options : 'i'}, "pos" : { $near : [lon,lat]}}).toArray(function(err,names){
-      res.header("Content-Type:","application/json");
-      res.end(JSON.stringify(names));
-    });
-  };
-
-  //saves new park
-  self.routes['postAPark'] = function(req, res){
-    //in production you would do some sanity checks on these values before parsing and handle the error if they don't parse
-    var lat = parseFloat(req.body.lat);
-    var lon = parseFloat(req.body.lon);
-    var name = req.body.name;
-    self.db.collection('parkpoints').insert( {'Name' : name, 'pos' : [lon,lat]}, {w:1}, function(err, records){
-    if (err) { callback(); }
-    res.end('success');
-    });
-  };
-
-
   // Web app urls
 	self.app  = express();
 	//This uses the Connect frameworks body parser to parse the body of the post request  
@@ -165,7 +111,7 @@ var App = function(){
   // Logic to open a database connection. We are going to call this outside of app so it is available to all our functions inside.
   self.connectDb = function(callback){
     self.db.open(function(err, db){
-      if(err){ callback() };
+      if(err){callback()};
       self.db.authenticate(self.dbUser, self.dbPass, {authdb: "admin"}, function(err, res){
         if(err){};
         callback();
