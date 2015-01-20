@@ -70,7 +70,7 @@ var App = function(){
 	//{'UserID' : -22, 'LevelName' : 'TestLevel1', 'Time' : 90001, 'UserName' : 'Guest 15'}
 	//self.db.collection('AllTimes').insert({'UserID' : -123, 'LevelName' : 'LevelTest1', 'Time' : 90000, 'UserName' : 'Guest 123'}, {}, function (err, result){ if (err) throw err; console.log(result);})
 	//var collection = self.db.get('AllTimes');
-	self.db.AllTimes.update(
+	self.db.collection('AllTimes').update(
 		{'UserID' : userID, 'LevelName' : levelName},
 		{'UserID' : userID, 'LevelName' : levelName, 'Time' : Time, 'UserName' : userName},
 		{
@@ -92,7 +92,7 @@ var App = function(){
 	var reqLevelName = req.param('LevelName');
 	//var collection = self.db.get('AllTimes');
 	//self.db.collection('AllTimes').find(
-	self.db.AllTimes.find(
+	self.db.collection('AllTimes').find(
 	{
 	'LevelName' : reqLevelName
 	}
