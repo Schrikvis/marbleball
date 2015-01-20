@@ -78,7 +78,7 @@ var App = function(){
 	self.db.collection('AllTimes').update(
 		lookFor,
 		toPush,
-		{upsert : true} //,
+		{upsert : true},
 		function updcallback(err, result){ if (err) throw err; console.log(result);}
 	);
   res.end()
