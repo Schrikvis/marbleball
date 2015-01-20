@@ -68,8 +68,9 @@ var App = function(){
     // Set our collection
     //collection.save(
 	//{'UserID' : -22, 'LevelName' : 'TestLevel1', 'Time' : 90001, 'UserName' : 'Guest 15'}
-	self.db.collection('AllTimes').insert({'UserID' : -123, 'LevelName' : 'LevelTest1', 'Time' : 90000, 'UserName' : 'Guest 123'}, {}, function (err, result){ if (err) throw err; console.log(result);})
-	self.db.collection('AllTimes').update(
+	//self.db.collection('AllTimes').insert({'UserID' : -123, 'LevelName' : 'LevelTest1', 'Time' : 90000, 'UserName' : 'Guest 123'}, {}, function (err, result){ if (err) throw err; console.log(result);})
+	var collection = self.db.get('AllTimes');
+	collection.update(
 		{'UserID' : userID, 'LevelName' : levelName},
 		{'UserID' : userID, 'LevelName' : levelName, 'Time' : Time, 'UserName' : userName},
 		{
@@ -89,7 +90,9 @@ var App = function(){
 	var reqUserID = req.param('UserID');
 	var timestrang = 'Times';
 	var reqLevelName = req.param('LevelName');
-	self.db.collection('AllTimes').find(
+	var collection = self.db.get('AllTimes');
+	//self.db.collection('AllTimes').find(
+	collection.find(
 	{
 	'LevelName' : reqLevelName
 	}
