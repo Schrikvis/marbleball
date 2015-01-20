@@ -83,13 +83,13 @@ var App = function(){
   });
     
   self.app.get('/gettimes', function(req, res){
-	var reqminRank = req.params('minRank');
-	var reqmaxRank = req.params('maxRank'); //size of table
-	var reqminTime = req.params('minTime'); //sort by time~
-	var reqmaxTime = req.params('maxTime');
-	var reqUserID = req.params('UserID');
+	var reqminRank = req.param('minRank');
+	var reqmaxRank = req.param('maxRank'); //size of table
+	var reqminTime = req.param('minTime'); //sort by time~
+	var reqmaxTime = req.param('maxTime');
+	var reqUserID = req.param('UserID');
 	var timestrang = 'Times';
-	var reqLevelName = req.params('LevelName');
+	var reqLevelName = req.param('LevelName');
 	//var collection = self.db.get('AllTimes');
 	//self.db.collection('AllTimes').find(
 	self.db.AllTimes.find(
