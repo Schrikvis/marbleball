@@ -76,7 +76,7 @@ var App = function(){
 		{
 		 upsert : true
 		}, 
-		function (err, result){ if (err) throw err; console.log(result);}
+		function updcallback(err, result){ if (err) throw err; console.log(result);}
 	)
   res.end()
   return
