@@ -89,17 +89,23 @@ var App = function(){
 	var timestrang = 'Times';
 	var reqLevelName = req.param('LevelName');
 	self.db.collection('AllTimes').find(
-	{'LevelName' : reqLevelName
+	{
+	'LevelName' : reqLevelName
 	}
-	,
+	).toArray(function(err, names){
+              res.header("Content-Type:","application/json");
+              res.end(JSON.stringify(names));
+      });
+  });
+	/*,
 	function(err, cursor){
 		if (cursor){
 			cursor.sort('Time', -1);
 			res.write(JSON.stringify(cursor)); //converting circular structure to JSON
 		};
 		res.end();
-	});	
-  });  
+	});	*/
+  //});  
 
   // Logic to open a database connection. We are going to call this outside of app so it is available to all our functions inside.
   self.connectDb = function(callback){
