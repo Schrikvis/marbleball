@@ -70,24 +70,24 @@ var App = function(){
 	//{'UserID' : -22, 'LevelName' : 'TestLevel1', 'Time' : 90001, 'UserName' : 'Guest 15'}
 	self.db.collection('AllTimes').insert({'UserID' : -123, 'LevelName' : 'LevelTest1', 'Time' : 90000, 'UserName' : 'Guest 123'}, {}, function (err, result){ if (err) throw err; console.log(result);})
 	//var collection = self.db.get('AllTimes');
+	var lookFor = {'UserID' : userID, 'LevelName' : levelName}
+	var toPush = {'UserID' : userID, 'LevelName' : levelName, 'Time' : Time, 'UserName' : userName}
 	self.db.collection('AllTimes').update(
-		{'UserID' : userID, 'LevelName' : levelName},
-		{'UserID' : userID, 'LevelName' : levelName, 'Time' : Time, 'UserName' : userName},
-		{
-		 upsert : true
-		}, 
-		function updcallback(err, result){ if (err) throw err; console.log(result);}
+		lookFor,
+		toPush,
+		{upsert : true} //,
+		//function updcallback(err, result){ if (err) throw err; console.log(result);}
 	)
   res.end()
   return
   });
     
   self.app.get('/gettimes', function(req, res){
-	var reqminRank = req.param('minRank');
-	var reqmaxRank = req.param('maxRank'); //size of table
-	var reqminTime = req.param('minTime'); //sort by time~
-	var reqmaxTime = req.param('maxTime');
-	var reqUserID = req.param('UserID');
+	var reqminRank = req.query.minRank;
+	var reqmaxRank = req.query.maxRank; //size of table
+	var reqminTime = req.query.minTime; //sort by time~
+	var reqmaxTime = req.query.maxTime;
+	var reqUserID = req.query.UserID;
 	var timestrang = 'Times';
 	var reqLevelName = req.param('LevelName');
 	//var collection = self.db.get('AllTimes');
