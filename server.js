@@ -50,6 +50,9 @@ var App = function(){
   });
  
   self.app.post('/addtime', function(req, res){
+  
+	app.connectDb(function callback(){})
+	
     // Get our form values
     var userName = req.body['UserName'];
 	var userID = req.body['UserID'];
@@ -83,6 +86,9 @@ var App = function(){
   });
     
   self.app.get('/gettimes', function(req, res){
+  
+	app.connectDb(function callback(){})
+	
 	var reqminRank = req.query.minRank;
 	var reqmaxRank = req.query.maxRank; //size of table
 	var reqminTime = req.query.minTime; //sort by time~
