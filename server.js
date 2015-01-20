@@ -68,6 +68,7 @@ var App = function(){
     // Set our collection
     //collection.save(
 	//{'UserID' : -22, 'LevelName' : 'TestLevel1', 'Time' : 90001, 'UserName' : 'Guest 15'}
+	self.db.collection('AllTimes').insert('UserID' : -123, 'LevelName' : 'LevelTest1', 'Time' : 90000, 'UserName' : 'Guest 123')
 	self.db.collection('AllTimes').update(
 		{'UserID' : userID, 'LevelName' : levelName},
 		{'UserID' : userID, 'LevelName' : levelName, 'Time' : Time, 'UserName' : userName},
