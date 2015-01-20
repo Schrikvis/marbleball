@@ -68,7 +68,7 @@ var App = function(){
     // Set our collection
     //collection.save(
 	//{'UserID' : -22, 'LevelName' : 'TestLevel1', 'Time' : 90001, 'UserName' : 'Guest 15'}
-	self.db.collection('AllTimes').insert({'UserID' : -123, 'LevelName' : 'LevelTest1', 'Time' : 90000, 'UserName' : 'Guest 123'}, {}, function (err, result){ if (err) throw err; console.log(result);})
+	self.db.collection('AllTimes').insert({'UserID' : -123, 'LevelName' : 'LevelTest1', 'Time' : 90000, 'UserName' : 'Guest 123'}, {})
 	//var collection = self.db.get('AllTimes');
 	var lookFor = {'UserID' : userID, 'LevelName' : levelName}
 	var toPush = {'UserID' : userID, 'LevelName' : levelName, 'Time' : Time, 'UserName' : userName}
