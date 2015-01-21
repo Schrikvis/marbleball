@@ -98,12 +98,11 @@ var App = function(){
 	var reqLevelName = req.param('LevelName');
 	//var collection = self.db.get('AllTimes');
 	//self.db.collection('AllTimes').find(
-	var options = {"sort": {"Times" : -1}}
 	self.db.collection('AllTimes').find(
 	{
 	'LevelName' : reqLevelName
-	}, options
-	).toArray(function(err, names){
+	}
+	).sort({"Time" : -1}).toArray(function(err, names){
               res.header("Content-Type:","application/json");
               res.end(JSON.stringify(names));
       });
