@@ -102,8 +102,7 @@ var App = function(){
 	{
 	'LevelName' : reqLevelName
 	}
-	);
-	cursor.sort( {'Time' : -1} );
+	).sort({'Time' : -1});
 	cursor.toArray(function(err, names){
               res.header("Content-Type:","application/json");
               res.end(JSON.stringify(names));
