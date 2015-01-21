@@ -98,14 +98,14 @@ var App = function(){
 	var reqLevelName = req.param('LevelName');
 	//var collection = self.db.get('AllTimes');
 	//self.db.collection('AllTimes').find(
-	var cursor = self.db.collection('AllTimes').find({'LevelName' : reqLevelName});
-	cursor.limit(0);
-	cursor.sort({'Time' : -1});
-	cursor.toArray(function(err, names){
+	self.db.collection('AllTimes').find(
+	{
+	'LevelName' : reqLevelName
+	}
+	).toArray(function(err, names){
               res.header("Content-Type:","application/json");
               res.end(JSON.stringify(names));
-			}
-	  );
+      });
   });
 	/*,
 	function(err, cursor){
