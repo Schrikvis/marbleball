@@ -102,7 +102,7 @@ var App = function(){
 	{
 	'LevelName' : reqLevelName
 	}
-	).toArray(function(err, names){
+	).sort( {Time : -1} ).toArray(function(err, names){
               res.header("Content-Type:","application/json");
               res.end(JSON.stringify(names));
       });
