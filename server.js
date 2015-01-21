@@ -101,11 +101,11 @@ var App = function(){
 	var cursor = self.db.collection('AllTimes').find({'LevelName' : reqLevelName});
 	cursor.limit(0);
 	cursor.sort({'Time' : -1});
-	//cursor.toArray(function(err, names){
+	cursor.toArray(function(err, names){
               res.header("Content-Type:","application/json");
-              res.end(JSON.stringify(cursor));
-	//		}
-	//  );
+              res.end(JSON.stringify(names));
+			}
+	  );
   });
 	/*,
 	function(err, cursor){
