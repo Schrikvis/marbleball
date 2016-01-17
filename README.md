@@ -3,6 +3,7 @@
 This code actually belongs to a [blog piece](https://www.openshift.com/blogs/set-up-nodejs-mongodb-and-express-on-free-spatial-web-hosting) written on OpenShift.com 
 #Thanks openshift folks!
 
+vis <3 doge
 ========
 
 License
